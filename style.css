@@ -2,8 +2,12 @@
 /* July 8, 2015 */
 
 body {
-	background: url("http://i.imgur.com/lD5Kmau.jpg");
+	background-image: url("http://i.imgur.com/lD5Kmau.jpg");
 	background-size: cover;
 	background-position: center;
+	text-align: center;
+}
+
+p {
 	text-align: center;
 }
