@@ -15,8 +15,12 @@ $(document).ready(function() {
 
 
   $("#removeButton").on("click", function() {
-    $("#list li :checkbox:checked").each( function() {
-        $(this).parent().remove();
+    console.log($("#list").children());
+    $($("#list").children()).each( function() {
+      console.log($(this).children("input"));
+
+      if( ($(this).children("input").is(":checked")) )
+        $(this).remove();
     });
 
     /*$("#list li").each(function() {
