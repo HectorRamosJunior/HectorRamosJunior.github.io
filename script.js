@@ -15,24 +15,11 @@ $(document).ready(function() {
 
 
   $("#removeButton").on("click", function() {
-    console.log($("#list").children());
-    $($("#list").children()).each( function() {
-      console.log($(this).children("input"));
 
+    $($("#list").children()).each( function() {
       if( ($(this).children("input").is(":checked")) )
         $(this).remove();
     });
-
-    /*$("#list li").each(function() {
-      console.log($(this).find("input"));
-      if( $(this).find("input").checked ) {
-        console.log(this + "worked");
-        $(this).remove();
-      }
-    });*/
-
-
-
 
   });
 
