@@ -10,6 +10,7 @@ $(document).ready(function() {
     $("#textfield").val("");
 
     $(list).append(toDo);
+    $("#button").focus();
   });
 
 
