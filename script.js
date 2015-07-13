@@ -3,6 +3,21 @@
 
 $(document).ready(function() {
   var list = document.getElementById("list");
+  $("#textfield").focus();
+
+  $("#textfield").on("keypress", function(e) {
+    if(e.which === 13) {
+      var toDo = document.getElementById("textfield").value;
+      toDo = "<li><input type='checkbox'> " + toDo + " </li>"
+      $("#textfield").val("");
+
+      $(list).append(toDo);
+      $("#textfield").focus();
+    }
+  });
+
+
+
 
   $("#button").on("click", function() { 
     var toDo = document.getElementById("textfield").value;
