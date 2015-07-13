@@ -1,21 +1,29 @@
-﻿/* Hector Ramos */
+/* Hector Ramos */
 /* July 8, 2015 */
 @charset "utf-8";
 
-body{
+body {
   background-image: url("http://i.imgur.com/v7X0tLG.jpg");
   /*background-size: cover;
   background-position: center;*/
 }
 
-div{
-  background-color: rgba(255,255,255,.85);
+div {
+  background-color: rgba(255, 255, 255, .85);
   width: 500px;
   margin: 0 auto;
 }
 
 input {
   /* display: inline; */
+}
+
+p {
+  text-align: center;
+}
+
+.toDo {
+  
 }
 
 #textfield {
@@ -33,12 +41,4 @@ input {
 #list {
   text-align: center;
   margin: 0 auto;
-}
-
-.toDo {
-  
-}
-
-p{
-  text-align: center;
 }
