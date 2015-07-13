@@ -3,9 +3,14 @@
 @charset "utf-8";
 
 body{
-/*  background-image: url("http://i.imgur.com/lD5Kmau.jpg"); */
-  background-size: cover;
-  background-position: center;
+  background-image: url("http://s.wallpaperhere.com/wallpapers/1920x1080/20110701/dark_moon-wide.jpg");
+  /*background-size: cover;
+  background-position: center;*/
+}
+
+div{
+  background-color: rgba(255,255,255,.85);
+  width: 500px;
   margin: 0 auto;
 }
 
