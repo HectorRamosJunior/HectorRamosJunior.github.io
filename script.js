@@ -34,7 +34,7 @@ $(document).ready(function() {
  * @param {JQuery} $textfield JQuery reference to the textfield object to use.
  */
 function appendItem($textfield) {
-  list.append("<li><input type=\"checkbox\">" + $textfield.val() + "</li>";);
+  list.append("<li><input type=\"checkbox\">" + $textfield.val() + "</li>");
   $textfield.val("");
   $textfield.focus();
 }
