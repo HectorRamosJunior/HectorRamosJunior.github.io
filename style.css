@@ -12,6 +12,7 @@ div {
   background-color: rgba(255, 255, 255, .85);
   width: 500px;
   margin: 0 auto;
+  text-align: center;
 }
 
 input {
@@ -40,5 +41,6 @@ p {
 
 #list {
   text-align: center;
+  width: 250px;
   margin: 0 auto;
 }
