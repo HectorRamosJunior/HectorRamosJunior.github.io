@@ -1,4 +1,4 @@
-# HectorRamosJunior.github.io
+# To-Do List Front-End Project
 
 Site is available here: http://hectorramosjunior.github.io/
 
