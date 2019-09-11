@@ -102,6 +102,7 @@ class TodoInput extends React.Component {
             <div>
                 <input type="text" placeholder="Insert ToDo here"
                     onChange={this.updateText}
+                    onKeyPress={this.handleEnter}
                     value={this.state.todoText} />
                 <button type="button" onClick={this.handleClick}>Enter</button>
             </div>
