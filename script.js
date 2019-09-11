@@ -74,12 +74,18 @@ class TodoInput extends React.Component {
 
         this.handleClick = this.handleClick.bind(this);
         this.updateText = this.updateText.bind(this);
+        this.handleEnter = this.handleEnter.bind(this);
     }
 
     updateText(e) {
         this.setState({
             todoText: e.target.value
         });
+    }
+
+    handleEnter(e) {
+        if (e.keyCode == 13 || e.charCode == 13)
+          this.handleClick();
     }
 
     handleClick(e) {
