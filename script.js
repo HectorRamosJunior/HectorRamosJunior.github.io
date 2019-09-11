@@ -1,41 +1,148 @@
 /* Hector Ramos */
-/* July 8, 2015 */
+/* September 10, 2019 */
 
-$(document).ready(function() {
-  var $list = $("#list");
-  var $textfield = $("#textfield");
-  var $button = $("#button");
-  var $removeButton = $("#removeButton");
-  
-  $textfield.focus();
-  $textfield.on("keypress", function(key) {
-    if (key.which === 13) {
-      appendItem($textfield,$list);
+
+class Todo {
+    constructor(text, isChecked, key) {
+        this.text = text;
+        this.isChecked = isChecked;
+        this.key = key
     }
-  });
-
-  $button.on("click", function() {
-    appendItem($textfield,$list);
-  });
-
-  $removeButton.on("click", function() {
-    $list.children().each(function() {
-      if (($(this).children("input").is(":checked"))) {
-        $(this).remove();
-      }
-    });
-  });
-});
-
-/**
- * Appends an item to a list from a textfield object.
- * 
- * The textfield object is cleared and refocused afterwards.
- * @param {JQuery} $textfield JQuery reference to the textfield object to use.
- * @param {JQuery} $list JQuery reference to the list object to use as well.
- */ 
-function appendItem($textfield, $list) {
-  $list.append("<li><input type=\"checkbox\">" + $textfield.val() + "</li>");
-  $textfield.val("");
-  $textfield.focus();
 }
+
+class TodoForm extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            todoList: []
+        };
+
+        this.addTodo = this.addTodo.bind(this);
+        this.checkTodo = this.checkTodo.bind(this);
+        this.removeTodos = this.removeTodos.bind(this);
+    }
+
+    addTodo(todoText) {
+        todoItem.key = this.state.todoList.length;
+        this.setState({
+            todoList: this.state.todoList.concat(
+                new Todo(todoText, false, this.state.todoList.length)
+            )
+        });
+    }
+
+    checkTodo(key, isChecked) {
+        this.setState({
+            todoList: this.state.todoList.map(todo => {
+                if (todo.key == key)
+                    todo.isChecked = isChecked
+
+                return todo
+            })
+        });
+    }
+
+    removeTodos(indexes) {
+        this.setState({
+            todoList: this.state.todoList.filter(x => !x.isChecked)
+        });
+    }
+
+    render() {
+        return (
+            <div id="containerDiv">
+                <TodoInput addTodo={this.addTodo} />
+                <TodoList listItems={this.state.todoList} onCheck={this.checkTodo} />
+
+                <div>
+                    <input type="button" value="Remove Checked" onClick={this.removeTodos} />
+                </div>
+            </div>
+        );
+    }
+}
+
+class TodoInput extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            todoText: ""
+        };
+
+        this.handleClick = this.handleClick.bind(this);
+        this.updateText = this.updateText.bind(this);
+    }
+
+    updateText(e) {
+        this.setState({
+            todoText: e.target.value
+        });
+    }
+
+    handleClick(e) {
+        if (this.state.todoText) {
+            this.props.addTodo(this.state.todoText);
+            this.setState({
+                todoText: ""
+            });
+        }
+    }
+
+    render() {
+        return (
+            <div>
+                <input type="text" placeholder="Insert ToDo here"
+                    onChange={this.updateText}
+                    value={this.state.todoText} />
+                <button type="button" onClick={this.handleClick}>Enter</button>
+            </div>
+        );
+    }
+}
+
+class TodoList extends React.Component {
+
+    render() {
+        return (
+            <ol>
+                {
+                    this.props.listItems.map((todoItem, index) =>
+                        <TodoListItem todo={todoItem} key={index} index={index}
+                            onCheck={this.props.onCheck} />
+                    )
+                }
+            </ol>
+        );
+    }
+}
+
+class TodoListItem extends React.Component {
+
+    constructor(props) {
+        super(props);
+
+        this.handleCheck = this.handleCheck.bind(this);
+    }
+
+    handleCheck(e) {
+        this.props.onCheck(this.props.todo.key, e.target.checked);
+    }
+
+    render() {
+        return (
+            <li>
+                <input type="checkbox" onClick={this.handleCheck}  checked={this.props.todo.isChecked} />
+                {this.props.todo.text}
+            </li>
+        );
+    }
+}
+
+ReactDOM.render(
+    <TodoForm />,
+    document.getElementById("main")
+)
