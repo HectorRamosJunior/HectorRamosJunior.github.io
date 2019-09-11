@@ -25,7 +25,6 @@ class TodoForm extends React.Component {
     }
 
     addTodo(todoText) {
-        todoItem.key = this.state.todoList.length;
         this.setState({
             todoList: this.state.todoList.concat(
                 new Todo(todoText, false, this.state.todoList.length)
